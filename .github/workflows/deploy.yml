@@ -16,7 +16,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
@@ -26,4 +25,4 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           PINECONE_API_KEY: ${{ secrets.PINECONE_API_KEY }}
-          PINECONE_INDEX_NAME: ${{ secrets.PINECONE_INDEX_NAME }} 
+          PINECONE_INDEX_NAME: ${{ secrets.PINECONE_INDEX_NAME }}

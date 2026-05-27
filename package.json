@@ -8,28 +8,28 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "14.2.5",
-    "react": "^18",
-    "react-dom": "^18",
-    "openai": "^4.52.0",
     "@pinecone-database/pinecone": "^2.2.2",
-    "pdf-parse": "^1.1.1",
-    "xlsx": "^0.18.5",
     "axios": "^1.7.2",
     "framer-motion": "^11.3.8",
     "lucide-react": "^0.408.0",
+    "next": "^16.2.6",
+    "openai": "^4.52.0",
+    "pdf-parse": "^1.1.1",
+    "react": "^18",
+    "react-dom": "^18",
     "react-dropzone": "^14.2.3",
     "react-markdown": "^9.0.1",
     "remark-gfm": "^4.0.0",
-    "uuid": "^10.0.0"
+    "uuid": "^14.0.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "typescript": "^5",
-    "tailwindcss": "^3.4.1",
     "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.39"
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }
