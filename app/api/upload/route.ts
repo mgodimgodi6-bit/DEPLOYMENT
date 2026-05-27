@@ -31,10 +31,3 @@ export async function POST(req: Request) {
     );
   }
 }
-
-// Required for large file uploads in Next.js
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
