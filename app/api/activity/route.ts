@@ -10,15 +10,27 @@ export async function GET(request: Request) {
   const repo = searchParams.get("repo");
   const headers = { Authorization: `Bearer ${GITHUB_TOKEN}` };
 
-  // Fetch list of repos
+  // ── DIAGNOSTIC MODE ──
+  if (searchParams.get("debug") === "1") {
+    return NextResponse.json({
+      hasToken: !!GITHUB_TOKEN,
+      tokenLength: GITHUB_TOKEN?.length || 0,
+      tokenPrefix: GITHUB_TOKEN?.slice(0, 4) || "none",
+      hasUsername: !!GITHUB_USERNAME,
+      username: GITHUB_USERNAME || "none",
+    });
+  }
+
   if (!repo) {
     try {
       const res = await fetch(
         `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=50&sort=updated`,
         { headers }
       );
+      const status = res.status;
       const repos = await res.json();
       return NextResponse.json({
+        status,
         repos: Array.isArray(repos) ? repos.map((r: any) => ({
           id: r.name.toLowerCase().replace(/\s+/g, "-"),
           name: r.name,
@@ -28,14 +40,14 @@ export async function GET(request: Request) {
           private: r.private,
           stars: r.stargazers_count,
           updatedAt: r.updated_at,
-        })) : []
+        })) : [],
+        errorMessage: Array.isArray(repos) ? null : repos.message,
       });
-    } catch (err) {
-      return NextResponse.json({ repos: [] }, { status: 500 });
+    } catch (err: any) {
+      return NextResponse.json({ repos: [], error: err.message }, { status: 500 });
     }
   }
 
-  // Fetch repo activity
   try {
     const [commitsRes, prsRes, runsRes] = await Promise.all([
       fetch(`https://api.github.com/repos/${repo}/commits?per_page=10`, { headers }),
