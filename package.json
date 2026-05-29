@@ -8,8 +8,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@pinecone-database/pinecone": "^2.2.2",
     "axios": "^1.7.2",
+    "firebase": "^12.13.0",
     "framer-motion": "^11.3.8",
     "lucide-react": "^0.408.0",
     "next": "^16.2.6",
